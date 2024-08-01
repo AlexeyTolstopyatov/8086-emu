@@ -3,16 +3,18 @@
 Почему? Потому что я пишу сам для себя (глупого) учебник, не используя никаких фреймворков и рантайма. 
 
 Запускать инструкции с использованием библиотек в этой среде не получится.
-```assembly
+```asm
 %include '...\win32ax.inc'
 
 .text
   main:
-    invoke MessageBox, 0, content, caption
+    mov ax, 0xFFFF
+    mov bx, 0x0F0F
+    xor ax, bx
+    invoke MessageBox, 0, 0, ax, caption
 ends
 .data
-  content db 'Message's Content'
-  caption db 'WINDOWS API CALL'
+  caption DB 'WINDOWS API CALL'
 ends
 ```
 Максимум, что возможно сделать в среде это посмотреть состояние регистров после простого стресс-теста:

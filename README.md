@@ -11,11 +11,12 @@
     mov ax, 0xFFFF
     mov bx, 0x0F0F
     xor ax, bx
-    invoke MessageBox, 0, 0, ax, caption
-ends
+    invoke MessageBox, 0, ax, caption, MB_OK ; *типа он знает Windows API*
+    invoke ExitProcess, 0
+
 .data
   caption DB 'WINDOWS API CALL'
-ends
+
 ```
 Максимум, что возможно сделать в среде это посмотреть состояние регистров после простого стресс-теста:
 ```assembly
